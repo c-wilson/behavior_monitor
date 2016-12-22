@@ -1,0 +1,21 @@
+<head><meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no"></head>
+{% load staticfiles %}
+<LINK rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+</head>
+<body>
+<header>
+    <a href="{% url 'behavior_subjects:index' %}"> return to mouse list. </a><br>
+    <h1 style="margin-top: 5px">Add a mouse:</h1>
+</header>
+{% if error_msg %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'behavior_subjects:mouse_adder' %}" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" name="add" value="Add mouse...">
+</form>
+</body>
